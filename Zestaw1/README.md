@@ -19,19 +19,3 @@ Zestaw nr 1
  
 
 5. Wykład przedstawia prosty stos jako przykład pojemnika. Korzystając z typu stowarzyszonego (typedef T value_type) zaimplementuj szablon funkcji sumującej wszystkie elementy stosu. 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
-    								dr Marcin Misiaszek 
