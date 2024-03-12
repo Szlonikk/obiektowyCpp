@@ -37,22 +37,20 @@ public:
 int main() {
     PrintData pd;
 
-    // Demonstracja polimorfizmu statycznego
     pd.print(5);
     pd.print(500.263);
     char c[] = "Hello C++";
     pd.print(c);
 
-    // Demonstracja polimorfizmu dynamicznego
     Ptak* ptak;
     Bociek Dzony;
     Sowa Palony;
 
     ptak = &Dzony;
-    ptak->sound(); // Wywołuje Circle::draw()
+    ptak->sound(); 
 
     ptak = &Palony;
-    ptak->sound(); // Wywołuje Square::draw()
+    ptak->sound(); 
 
     return 0;
 }
