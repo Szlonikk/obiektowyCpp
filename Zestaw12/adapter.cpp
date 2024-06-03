@@ -1,7 +1,4 @@
 #include <iostream>
-/**
- * The Target defines the domain-specific interface used by the client code.
- */
 class Target {
  public:
   virtual ~Target() = default;
@@ -10,12 +7,6 @@ class Target {
     return "Target: The default target's behavior.";
   }
 };
-
-/**
- * The Adaptee contains some useful behavior, but its interface is incompatible
- * with the existing client code. The Adaptee needs some adaptation before the
- * client code can use it.
- */
 class Adaptee {
  public:
   std::string SpecificRequest() const {
@@ -23,10 +14,6 @@ class Adaptee {
   }
 };
 
-/**
- * The Adapter makes the Adaptee's interface compatible with the Target's
- * interface.
- */
 class Adapter : public Target {
  private:
   Adaptee *adaptee_;
@@ -40,9 +27,6 @@ class Adapter : public Target {
   }
 };
 
-/**
- * The client code supports all classes that follow the Target interface.
- */
 void ClientCode(const Target *target) {
   std::cout << target->Request();
 }

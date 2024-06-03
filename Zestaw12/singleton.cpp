@@ -5,17 +5,10 @@
  */
 #include <iostream>
 #include <thread>
-class Singleton
-{
-
-    /**
-     * The Singleton's constructor should always be private to prevent direct
-     * construction calls with the `new` operator.
-     */
+class Singleton{
 
 protected:
-    Singleton(const std::string value): value_(value)
-    {
+    Singleton(const std::string value): value_(value){
     }
 
     static Singleton* singleton_;
@@ -23,29 +16,11 @@ protected:
     std::string value_;
 
 public:
-
-    /**
-     * Singletons should not be cloneable.
-     */
     Singleton(Singleton &other) = delete;
-    /**
-     * Singletons should not be assignable.
-     */
     void operator=(const Singleton &) = delete;
-    /**
-     * This is the static method that controls the access to the singleton
-     * instance. On the first run, it creates a singleton object and places it
-     * into the static field. On subsequent runs, it returns the client existing
-     * object stored in the static field.
-     */
-
     static Singleton *GetInstance(const std::string& value);
-    /**
-     * Finally, any singleton should define some business logic, which can be
-     * executed on its instance.
-     */
-    void SomeBusinessLogic()
-    {
+
+    void SomeBusinessLogic(){
         // ...
     }
 
@@ -54,17 +29,9 @@ public:
     } 
 };
 
-Singleton* Singleton::singleton_= nullptr;;
+Singleton* Singleton::singleton_= nullptr;
 
-/**
- * Static methods should be defined outside the class.
- */
-Singleton *Singleton::GetInstance(const std::string& value)
-{
-    /**
-     * This is a safer way to create an instance. instance = new Singleton is
-     * dangeruous in case two instance threads wants to access at the same time
-     */
+Singleton *Singleton::GetInstance(const std::string& value){
     if(singleton_==nullptr){
         singleton_ = new Singleton(value);
     }
@@ -72,14 +39,12 @@ Singleton *Singleton::GetInstance(const std::string& value)
 }
 
 void ThreadFoo(){
-    // Following code emulates slow initialization.
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     Singleton* singleton = Singleton::GetInstance("FOO");
     std::cout << singleton->value() << "\n";
 }
 
 void ThreadBar(){
-    // Following code emulates slow initialization.
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     Singleton* singleton = Singleton::GetInstance("BAR");
     std::cout << singleton->value() << "\n";
